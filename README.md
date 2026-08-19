@@ -11,7 +11,7 @@ Built as a static page with no dependencies or build step — just open `index.h
 - Footer carousel of accreditation logos, looping continuously (CSS only, no JavaScript)
 - Contact details for all four branches, with click-to-call and email links
 - Responsive layout for desktop and mobile
-- Automatic light and dark mode
+- Light-only visual theme
 - Animated progress indicator, disabled for users who prefer reduced motion
 - `noindex` tag so search engines don't index the maintenance state
 

@@ -4,6 +4,7 @@
      charcoal #4D3F3F                                        */
 
 :root {
+  color-scheme: light;
   --brand-crimson: #a82a2e;
   --brand-crimson-dark: #8c2226;
   --brand-charcoal: #4d3f3f;
@@ -18,21 +19,6 @@
   --border: #e6dfdd;
   --rule: rgba(77, 63, 63, 0.14);
   --shadow: 0 18px 50px rgba(77, 63, 63, 0.12);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1a1515;
-    --bg-accent: rgba(168, 42, 46, 0.14);
-    --panel: #241d1d;
-    --logo-plate: #f7f5f4;
-    --text: #f2ebea;
-    --muted: #b3a5a4;
-    --accent: #e0666a;
-    --border: #382d2d;
-    --rule: rgba(242, 235, 234, 0.14);
-    --shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
-  }
 }
 
 * {
