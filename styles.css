@@ -1,0 +1,378 @@
+/* Morgan Hill Solicitors — maintenance page
+   Brand palette sampled from img/mhs-logo.png:
+     crimson  #A82A2E
+     charcoal #4D3F3F                                        */
+
+:root {
+  --brand-crimson: #a82a2e;
+  --brand-crimson-dark: #8c2226;
+  --brand-charcoal: #4d3f3f;
+
+  --bg: #f7f5f4;
+  --bg-accent: rgba(168, 42, 46, 0.06);
+  --panel: #ffffff;
+  --logo-plate: transparent;
+  --text: #33292a;
+  --muted: #6d6060;
+  --accent: var(--brand-crimson);
+  --border: #e6dfdd;
+  --rule: rgba(77, 63, 63, 0.14);
+  --shadow: 0 18px 50px rgba(77, 63, 63, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1515;
+    --bg-accent: rgba(168, 42, 46, 0.14);
+    --panel: #241d1d;
+    --logo-plate: #f7f5f4;
+    --text: #f2ebea;
+    --muted: #b3a5a4;
+    --accent: #e0666a;
+    --border: #382d2d;
+    --rule: rgba(242, 235, 234, 0.14);
+    --shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+  background: var(--bg);
+  background-image: radial-gradient(circle at 50% 0%, var(--bg-accent), transparent 60%);
+  color: var(--text);
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.65;
+}
+
+main {
+  width: 100%;
+  max-width: 720px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--brand-crimson);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 48px 44px;
+  text-align: center;
+}
+
+/* --- logo --- */
+
+.logo-wrap {
+  display: inline-block;
+  margin-bottom: 24px;
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: var(--logo-plate);
+}
+
+.logo {
+  display: block;
+  width: 132px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- copy --- */
+
+h1 {
+  margin: 0 0 14px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- indeterminate progress bar --- */
+
+.progress {
+  position: relative;
+  height: 4px;
+  margin: 32px auto;
+  max-width: 260px;
+  border-radius: 999px;
+  background: var(--rule);
+  overflow: hidden;
+}
+
+.progress::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 40%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand-crimson-dark), var(--accent));
+  animation: slide 1.9s ease-in-out infinite;
+}
+
+@keyframes slide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress::after {
+    animation: none;
+    width: 100%;
+  }
+}
+
+/* --- shared section furniture --- */
+
+.divider {
+  height: 1px;
+  margin: 32px 0 28px;
+  border: 0;
+  background: var(--rule);
+}
+
+h2 {
+  margin: 0 0 18px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* --- areas of practice --- */
+
+.practice-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+/* Balanced columns rather than a grid, so the A–Z order reads down each
+   column and stays correct if services are added or removed. */
+@media (min-width: 620px) {
+  .practice-list {
+    column-count: 2;
+    column-gap: 32px;
+  }
+}
+
+.practice-list li {
+  position: relative;
+  margin-bottom: 9px;
+  padding-left: 18px;
+  line-height: 1.45;
+  break-inside: avoid;
+}
+
+.practice-list li:last-child {
+  margin-bottom: 0;
+}
+
+.practice-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* --- branches --- */
+
+.branches h2 {
+  margin-bottom: 6px;
+}
+
+.branches-note {
+  margin: 0 0 24px;
+  font-size: 0.92rem;
+}
+
+.branch-list {
+  display: grid;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+@media (min-width: 620px) {
+  .branch-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 32px;
+  }
+}
+
+.branch {
+  padding-left: 14px;
+  border-left: 3px solid var(--rule);
+}
+
+.branch h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--bg-accent);
+  color: var(--accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+}
+
+.branch address {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-style: normal;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.branch .street {
+  display: flex;
+  flex-direction: column;
+  margin: 2px 0;
+  line-height: 1.45;
+}
+
+.branch a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.branch a:hover,
+.branch a:focus-visible {
+  text-decoration: underline;
+}
+
+/* --- footer: accreditations carousel --- */
+
+.site-footer {
+  width: 100%;
+  max-width: 720px;
+  /* No horizontal padding: the marquee runs edge to edge inside the panel. */
+  padding: 30px 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  overflow: hidden;
+}
+
+.carousel {
+  overflow: hidden;
+  /* Fade the logos out at both edges so they don't clip abruptly. */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.carousel:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+/* Each group carries its own trailing gap, so one group's width is exactly
+   50% of the track — which is what the animation scrolls. */
+.carousel-group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-right: 18px;
+}
+
+/* Logos are transparent PNGs of a uniform aspect ratio, so they sit directly
+   on the panel and scale from a single width. */
+.carousel-group img {
+  flex: none;
+  width: 172px;
+  height: auto;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .carousel-track {
+    animation: none;
+  }
+}
+
+/* --- small screens --- */
+
+@media (max-width: 480px) {
+  main {
+    padding: 36px 24px;
+  }
+
+  h1 {
+    font-size: 1.45rem;
+  }
+
+  .logo {
+    width: 120px;
+  }
+}
